@@ -4,7 +4,6 @@ const ActivitiesSection = ({ activities, isEditing, updateActivities }) => {
   const [activity_images, setActivityImages] = useState([]);
   console.log(activity_images, "activity_images");
 
-  console.log(activities, "activities");
 
   useEffect(() => {
     if (activities?.activity_images) {
