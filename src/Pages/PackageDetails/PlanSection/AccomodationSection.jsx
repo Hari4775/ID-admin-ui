@@ -35,7 +35,7 @@ const AccommodationSection = ({ accommodation,isEditing,updateAccommodation }) =
       <div className="h-48 flex">
         {accommodation.hotel_images.map((img, index) => (
           <div key={index} className="relative">
-            <img className="h-full w-1/3 object-cover" src={img} alt={`Hotel Image ${index + 1}`} />
+            <img className="h-full w-1/3 object-cover" src={img.image} alt={`Hotel Image ${index + 1}`} />
             {isEditing && (
               <button className="absolute top-0 right-0 bg-red-500 p-1" onClick={() => handleDeleteImage(index)}>
                 <FaTrash className="text-white" />

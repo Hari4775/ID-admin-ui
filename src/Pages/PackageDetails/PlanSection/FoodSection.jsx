@@ -1,6 +1,9 @@
  import React from 'react'
   
   const FoodSection = ({ food }) => {
+  
+
+
     console.log(food,"food")
 
     return (
@@ -12,7 +15,7 @@
               <img
                 key={imgIndex}
                 className="h-full w-1/3 object-cover mx-2"
-                src={img}
+                src={img.image}
                 alt={`Hotel Image ${imgIndex + 1}`}
               />
             ))}
