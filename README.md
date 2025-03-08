@@ -74,6 +74,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  -signup aws
  -launch instance
  -chmod 400 LAKSHADWEEP.pem
+ 
  -ssh -i "LAKSHADWEEP.pem" ubuntu@ec2-13-60-180-199.eu-north-1.compute.amazonaws.com
  -install node version 
  -git clone https://
