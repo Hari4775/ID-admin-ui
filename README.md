@@ -69,5 +69,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
  
- HARIKUMAR 
  
+<!-- DEPLOYMENT -->
+
+ -signup aws
+ -launch instance
+ -chmod 400 LAKSHADWEEP.pem
+ -ssh -i "LAKSHADWEEP.pem" ubuntu@ec2-13-60-180-199.eu-north-1.compute.amazonaws.com
+ -install node version 
+ -git clone https://
+
+
+<!-- FRONT END -->
+ -npm run build
+- sudo apt update
+- sudo apt install nginx
+- sudo systemctl start nginx
+- sudo systemctl enable nginx
+
+<!-- - COPY CODE FROM dist(build files) to /var/www/html -->
+- sudo scp -r build/* /var/www/html/
+
+-enable port 80 on your instance
+
