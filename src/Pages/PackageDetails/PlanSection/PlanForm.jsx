@@ -20,6 +20,11 @@ const PlanForm = ({ categoryId, refresh}) => {
     });
 
     const [message, setMessage] = useState("");
+    
+
+    const [isplan, setPlan] = useState(false);
+    
+    const handleCancelPlan = () => setPlan(true);
 
     const uploadImageToCloudinary = async (files) => {
         return Promise.all(
@@ -94,11 +99,18 @@ const PlanForm = ({ categoryId, refresh}) => {
     };
 
     return (
+
+        
         <div className="p-4 w-8/12 mx-auto">
             <form onSubmit={handleCreatePlan} className="space-y-4">
+
+              
                 
                 {/* ✅ Day Selection */}
-                <select name="day" value={planData.day} onChange={(e) => setPlanData({ ...planData, day: e.target.value })} className="w-full border p-2 rounded">
+
+                {!isplan?(
+                    <>
+                    <select name="day" value={planData.day} onChange={(e) => setPlanData({ ...planData, day: e.target.value })} className="w-full border p-2 rounded">
                     <option value="">Select Day</option>
                     {[...Array(10).keys()].map((day) => (
                         <option key={day + 1} value={day + 1}>Day {day + 1}</option>
@@ -107,6 +119,14 @@ const PlanForm = ({ categoryId, refresh}) => {
 
                 <input type="text" name="day_heading" value={planData.day_heading} onChange={(e) => setPlanData({ ...planData, day_heading: e.target.value })} placeholder="Day Heading" className="w-full border p-2 rounded" />
                 <input type="text" name="description" value={planData.description} onChange={(e) => setPlanData({ ...planData, description: e.target.value })} placeholder="Description" className="w-full border p-2 rounded" />
+                </>
+
+):null}
+                
+
+
+
+
 
                 {/* ✅ Accommodations */}
                 {planData.accommodations.map((accommodation, index) => (
@@ -177,6 +197,10 @@ const PlanForm = ({ categoryId, refresh}) => {
 
                 <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Create Plan</button>
                 {message && <p className="text-center text-green-600">{message}</p>}
+
+
+                <button type="button"
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded" onClick={handleCancelPlan} >Cancel</button>
             </form>
         </div>
     );
