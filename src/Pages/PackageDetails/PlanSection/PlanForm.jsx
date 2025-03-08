@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createPlan } from '../../../api/DayPlan/DayPlanApi';
 import { useParams } from 'react-router-dom';
 
-const PlanForm = ({ categoryId }) => {
+const PlanForm = ({ categoryId, refresh}) => {
     const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dr1ogkaha/image/upload";
     const CLOUDINARY_UPLOAD_PRESET = "my_preset";
       const { package_id } = useParams();
@@ -86,6 +86,7 @@ const PlanForm = ({ categoryId }) => {
             await createPlan(planData);
             setMessage("New day plan created successfully!");
             setTimeout(() => setMessage(""), 2000);
+            refresh();
         } catch (error) {
             setMessage(`Failed to create plan. Error: ${error.message}`);
             console.error(error);
