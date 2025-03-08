@@ -70,8 +70,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
  
  
-<!-- DEPLOYMENT -->
-
+# DEPLOYMENT
  -signup aws
  -launch instance
  -chmod 400 LAKSHADWEEP.pem
@@ -80,15 +79,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  -git clone https://
 
 
-<!-- FRONT END -->
+# FRONT END
  -npm run build
 - sudo apt update
 - sudo apt install nginx
 - sudo systemctl start nginx
 - sudo systemctl enable nginx
 
-<!-- - COPY CODE FROM dist(build files) to /var/www/html -->
+
+# COPY CODE FROM dist(build files) to /var/www/html
 - sudo scp -r build/* /var/www/html/
+- enable port 80 on your instance
 
--enable port 80 on your instance
 
+# ADDING CUSTOM DOMAIN NAME
+- purchased domain name from godady
+- signup cloudfare & add a new domain name
+- change the name server on godady and point it to a cloudfare
+- wait for sometime till your nameserver are updated
