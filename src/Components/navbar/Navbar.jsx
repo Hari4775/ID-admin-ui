@@ -1,6 +1,6 @@
 import React from 'react'
 import { logout } from '../../api/Auth/Auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -56,6 +56,8 @@ const Navbar = () => {
   return (
     <div>
          <div className="w-11/12 mx-auto flex my-10 ">
+
+      
         <div>
           <h1 className="text-3xl mb-7"><strong>Welcome</strong> harikumar </h1>
           <p className="font-bold text-xl">email</p>

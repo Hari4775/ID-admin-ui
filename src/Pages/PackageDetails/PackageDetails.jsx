@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../../api/Category/CategoryApi";
 import CategoryCard from "./CategorySection/CategoryCard";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPlan } from "../../api/DayPlan/DayPlanApi";
 import PlanCard from "./PlanSection/PlanCard";
 import PlanForm from "./PlanSection/PlanForm";
@@ -16,6 +16,8 @@ const AdminPackageDetails = () => {
   const [categories, setCategories] = useState([]);
 
   console.log(categories, "categories");
+  console.log(selectedCategoryId,"selectedCategoryId");
+  
 
   const handleViewPlan = (category_id) => {
     setSelectedCategoryId(category_id);
@@ -62,9 +64,15 @@ const AdminPackageDetails = () => {
   }, [selectedCategoryId]);
 
   return (
-    <div className="w-full items-center justify-items-center">
+    <>
+    <div className=" mr-2 ">
+     <Link to="/">
+         <img className="w-8 h-4 mr-4" src="https://e7.pngegg.com/pngimages/622/678/png-clipart-computer-icons-arrow-symbol-back-button-blue-angle.png" alt=""/>
+         </Link>
+         </div>
+         <div className="w-full items-center justify-items-center">
       <h1>Package Categories</h1>
-
+      
       <div>
         <div className="w-full py-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <CategoryForm refreshCategories={fetchCategories} />
@@ -100,7 +108,10 @@ const AdminPackageDetails = () => {
 
           {planData.length > 0 ? (
             <div className="bg-slate-500 w-11/12 mx-auto py-10">
+
               <h2>Day Plan for Category {selectedCategoryId}</h2>
+
+
               {planData.map((plan) => (
                 <PlanCard
                   key={plan.plan_id || plan._id}
@@ -116,6 +127,8 @@ const AdminPackageDetails = () => {
         </>
       )}
     </div>
+
+    </>
   );
 };
 
