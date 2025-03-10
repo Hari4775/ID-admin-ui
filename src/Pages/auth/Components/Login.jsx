@@ -37,7 +37,7 @@ const Login = () => {
 
     <div className="flex flex-col items-center  justify-center  w-full h-screen ">
 
-    <div className='lg:w-1/3 md:w-8/12 w-11/12 mx-auto inner-container border-2 shadow-lg shadow-slate-500'>
+    <div className=' md:w-8/12 w-11/12 mx-auto inner-container border-2 shadow-lg shadow-slate-500'>
           <div className="mid-container mb-10 text-center">
          
             
