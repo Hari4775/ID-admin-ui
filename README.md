@@ -79,8 +79,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  -install node version (nvm install 20.15.1)
  -git clone https://
 
+  Install nvm
+Run the following command to download and install nvm:
+
+# INSTALL NVM AND NODE JS
+ - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+ - source ~/.nvm/nvm.sh
+ - nvm --version
+ - nvm install 20.15.1
+
 
 # FRONT END
+- npm install
  -npm run build
 - sudo apt update
 - sudo apt install nginx
