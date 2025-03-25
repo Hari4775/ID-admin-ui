@@ -42,39 +42,22 @@ const ActivitiesSection = ({ activities, isEditing, updateActivities }) => {
     <div className="w-10/12 mx-auto md:my-10 my-4">
       <div>
         {isEditing ? (
-          <input
-            className="resort-name font-bold mb-1"
-            type="text"
-            value={activities?.activity_name}
-            onChange={(e) =>
-              updateActivities(activities._id, {
-                activity_name: e.target.value,
-              })
-            }
+          <input className="resort-name font-bold mb-1"  type="text" value={activities?.activity_name}
+            onChange={(e) => updateActivities(activities._id, { activity_name: e.target.value,})}
           />
-        ) : (
-          <h1 className="resort-name font-bold mb-1">
+          ) : (
+          <h1 className="font-bold mb-1 text-left text-xl">
             {activities?.activity_name}
           </h1>
         )}
       </div>
 
-      <div className="h-48 flex overflow-x-auto custom-scrollbar">
+      <div className="h-48 my-5 flex overflow-x-auto custom-scrollbar">
         {activity_images.map((img, index) => (
-
-
-
-          <div key={index} className="relative">
-            <img
-              className="h-full  object-cover mx-2"
-              src={img.image}
-              alt={`Hotel Image ${index + 1}`}
-            />
+          <div key={index} className="relative w-full">
+            <img className="h-full  object-cover mx-2 rounded-xl border-2 border-blue-600"  src={img.image} alt={`Hotel Image ${index + 1}`}/>
             {isEditing && (
-              <button
-                className="absolute top-0 right-0 bg-red-500 p-1"
-                onClick={() => handleDeleteImage(index)}
-              >
+              <button className="absolute top-0 right-0 bg-red-500 p-1" onClick={() => handleDeleteImage(index)} >
                 <FaTrash className="text-white" />
               </button>
             )}
@@ -82,12 +65,7 @@ const ActivitiesSection = ({ activities, isEditing, updateActivities }) => {
         ))}
       </div>
       {isEditing && (
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="mt-2"
-        />
+        <input type="file" accept="image/*" onChange={handleFileChange} className="mt-2" />
       )}
 
       {/* {activities?.activity_images.length > 0 && (
@@ -102,7 +80,7 @@ const ActivitiesSection = ({ activities, isEditing, updateActivities }) => {
             ))}
           </div>
         )} */}
-      <p className="mb-2 text-xs">{activities?.activity_description}</p>
+      <p className="mb-2 text-xs text-left">{activities?.activity_description}</p>
     </div>
   );
 };

@@ -26,16 +26,16 @@ const AccommodationSection = ({ accommodation,isEditing,updateAccommodation }) =
               value={accommodation?.hotel_name}   onChange={(e) => updateAccommodation(accommodation._id, { hotel_name: e.target.value })}            
             />
           ):(
-            <h1 className="mb-2 resort-name font-bold">{accommodation?.hotel_name}</h1>
+            <h1 className=" resort-name font-bold text-xl ">{accommodation?.hotel_name}</h1>
           )}
-          <p className="mb-2 sub-heading ml-auto">Rating: {accommodation?.rating}</p>
+          <p className=" sub-heading ml-10">Rating: {accommodation?.rating}</p>
         </div>
 
          {/* Image Display with Delete Option */}
-      <div className="h-48 flex">
+      <div className="h-48 flex my-5">
         {accommodation.hotel_images.map((img, index) => (
-          <div key={index} className="relative">
-            <img className="h-full w-1/3 object-cover" src={img.image} alt={`Hotel Image ${index + 1}`} />
+          <div key={index} className="relative ">
+            <img className="h-full mx-1 object-cover rounded-xl border-2 border-blue-600" src={img.image} alt={`Hotel Image ${index + 1}`} />
             {isEditing && (
               <button className="absolute top-0 right-0 bg-red-500 p-1" onClick={() => handleDeleteImage(index)}>
                 <FaTrash className="text-white" />
@@ -44,12 +44,13 @@ const AccommodationSection = ({ accommodation,isEditing,updateAccommodation }) =
           </div>
         ))}
       </div>
-      {isEditing && <input type="file" accept="image/*" onChange={handleFileChange} className="mt-2" />}
-
-        <div>
+      <div>
           <p className="mb-2 text-xs mt-2">{accommodation?.location}</p>
           <p className="mb-2 text-xs">{accommodation?.type}</p>
         </div>
+      {isEditing && <input type="file" accept="image/*" onChange={handleFileChange} className="mt-2" />}
+
+       
       </div>
     );
   };

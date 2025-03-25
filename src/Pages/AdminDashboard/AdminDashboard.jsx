@@ -32,10 +32,10 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="dashboard w-full h-screen pt-10">
-      <div className="w-11/12 mx-auto flex flex-col justify-items-center">
-        <h2 className="mt-20 mb-5 text-3xl font-bold text-center">Packages</h2>
-        <div className="w-full py-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="dashboard w-full h-screen ">
+      <div className="w-11/12 mx-auto flex flex-col ">
+        <h2 className="mt-10  text-4xl font-bold text-blue-950 text-center underline">ISLAND DAYS TOUR PACKAGES</h2>
+        <div className="w-full py-4 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <PackageForm refreshPackages={fetchPackages}  />
           {packages?.length > 0 ? (
             packages.map((pkg) => (

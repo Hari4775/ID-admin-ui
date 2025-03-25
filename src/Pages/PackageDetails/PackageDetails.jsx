@@ -66,12 +66,12 @@ const AdminPackageDetails = () => {
   return (
     <>
     <div className=" mr-2 ">
-     <Link to="/">
-         <img className="w-8 h-4 mr-4" src="https://e7.pngegg.com/pngimages/622/678/png-clipart-computer-icons-arrow-symbol-back-button-blue-angle.png" alt=""/>
-         </Link>
-         </div>
+         <Link to="/">
+           <img className="w-8 h-4 mr-4" src="https://e7.pngegg.com/pngimages/622/678/png-clipart-computer-icons-arrow-symbol-back-button-blue-angle.png" alt=""/>
+        </Link>
+    </div>
          <div className="w-full items-center justify-items-center">
-      <h1>Package Categories</h1>
+      <h1 className="font-bold text-3xl underline">PACKAGE CATEGORIES</h1>
       
       <div>
         <div className="w-full py-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -107,7 +107,7 @@ const AdminPackageDetails = () => {
           )}
 
           {planData.length > 0 ? (
-            <div className="bg-slate-500 w-11/12 mx-auto py-10">
+            <div className=" w-11/12 mx-auto py-10">
 
               <h2>Day Plan for Category {selectedCategoryId}</h2>
 

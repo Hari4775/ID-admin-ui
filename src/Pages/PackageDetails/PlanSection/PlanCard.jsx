@@ -81,8 +81,8 @@ const PlanCard = ({ planData }) => {
 
   const planCategoryUnderLines = (section) => {
     return planCategorySection === section
-      ? 'border-b-4 border-[blue] font-bold text-[blue] opacity-100'
-      : 'border-b-2 border-transparent text-white text-opacity-50';
+      ? 'border-b-4 border-[blue] font-bold text-blue-500 opacity-100'
+      : 'border-b-2 font-medium  border-transparent text-blue-700 font- text-opacity-50';
   };
 
   const calculateTotals = () => {
@@ -114,9 +114,10 @@ const PlanCard = ({ planData }) => {
 
       case 'day':
         return (
-          <div className="day-plan-data-container w-11/12 mx-auto h-80 overflow-y-scroll mb-3">
+          <div className="day-plan-data-container  w-11/12 mx-auto h-80
+           overflow-y-scroll mb-3 rounded-lg">
             {dayPlan.map((planItem, index) => (
-              <div key={index}>
+              <div className='cursor-pointer  group border-4 border-gray-100  w-full  rounded-lg shadow-lg mb-5' key={index} >
                 <CommonHeadingSection planItem={planItem} />
                 
                 {planItem?.accommodations?.map((accommodationItem) => (
@@ -205,15 +206,16 @@ const PlanCard = ({ planData }) => {
   };
 
   return (
-    <div>
+    // <div className="cursor-pointer transform hover:scale-105 transition-transform duration-300 group border-gray-100/30 flex w-full  self-center overflow-hidden rounded-lg border-2 package-container shadow-lg">
+    <div className="cursor-pointer transform hover:scale-105 transition-transform duration-300 group border-4 border-gray-100 flex w-full self-center overflow-hidden rounded-lg shadow-lg">
+
       <div className="image-container w-full ml-auto">
-        <div className="menu-bar flex w-full lg:space-x-12 space-x-2">
-          <button
-            className="bg-yellow-500 text-white px-3 py-1 rounded-md flex items-center"
-            onClick={isEditing ? handleUpdatePlan : handleEditToggle}
-          >
-            {isEditing ? 'Save' : 'Edit'} <FaPen className="ml-2" />
-          </button>
+        <div className="menu-bar flex w-full lg:space-x-12 space-x-4 ">
+        <button className={`text-white font-medium h-10 p-2 my-auto mx-4 rounded-lg flex items-center transition-colors duration-300 ${isEditing ? 'bg-green-500' : 'bg-orange-500'}`}
+          onClick={isEditing ? handleUpdatePlan : handleEditToggle}>
+          {isEditing ? 'Save' : 'Edit'} 
+        </button>
+
           <p
             className={`sub-heading lg:text-lg text-xs my-5 lg:ml-5 ${planCategoryUnderLines(
               'features'

@@ -25,6 +25,7 @@ const Login = () => {
        if (response.success) {
         console.log('Login successful:', response.data);
         document.cookie = `token=${response.token}; path=/;`; // Set token cookie
+        localStorage.setItem("userEmail", email);
         navigate("/")
         // Log additional data if needed
         // Handle successful login actions here, like navigation or saving a token

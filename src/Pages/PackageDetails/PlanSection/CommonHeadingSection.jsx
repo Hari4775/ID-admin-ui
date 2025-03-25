@@ -3,8 +3,8 @@ import React from 'react'
 const CommonHeadingSection = ({ planItem }) => {
     return (
       <div>
-        <div className="each-day-headings flex">
-          <button className="bg-slate-500 rounded-xl lg:w-1/12 w-3/12 lg:my-5 my-2">
+        <div className="each-day-headings flex bg-blue-600 rounded-t-lg text-white font-bold">
+          <button className="bg-blue-950 font-bold rounded-xl lg:w-1/12 w-3/12 my-2 mx-2 p-2 ">
             Day {planItem?.day}
           </button>
           <p className="ml-5 my-5 sub-heading">{planItem?.day_Heading}</p>
