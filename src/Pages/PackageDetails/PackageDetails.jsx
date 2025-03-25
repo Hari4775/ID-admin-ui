@@ -94,20 +94,20 @@ const AdminPackageDetails = () => {
       </div>
 
       {selectedCategoryId && (
-        <>
-          <button
-            className="bg-blue-500 text-white px-3 py-1 rounded-md mb-4"
-            onClick={handleCreatePlan}
-          >
-            Create New Plan
-          </button>
+        <div className="w-full">
+          <div className="planbutton w-2/12">
+             <button className="bg-green-600 border-blue-700 border-2 font-bold text-white px-3 py-1 mb-3 rounded-md  ml-10"
+               onClick={handleCreatePlan}
+             >Create New Plan
+            </button>
+          </div>
 
           {isCreateplan && (
             <PlanForm categoryId={selectedCategoryId} refresh={fetchDayPlan} />
           )}
 
           {planData.length > 0 ? (
-            <div className=" w-11/12 mx-auto py-10">
+            <div className=" w-11/12 mx-auto ">
 
               <h2>Day Plan for Category {selectedCategoryId}</h2>
 
@@ -124,7 +124,7 @@ const AdminPackageDetails = () => {
               <p className="text-center">No Plan found for this category</p>
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
 

@@ -41,11 +41,11 @@ useEffect(() => {
   return (
     <div className='bg-blue-950 w-11/12 mx-auto rounded-lg p-2 mt-5 flex'>     
         <div>
-          <h1 className="text-3xl text-red-600"><strong>Hi..</strong> {userEmail} </h1>
+          <h1 className="text-xl text-red-600"><strong>Hi..</strong> {userEmail} </h1>
         </div>
         <div className="ml-auto">
           {/* <h1 className="text-xl mb-2">Date: <strong>{currentDate}</strong></h1> */}
-          <button onClick={logoutHandler} className="w-full px-2 bg-blue-600 rounded-lg h-10 text-white font-bold ml-auto">
+          <button onClick={logoutHandler} className="w-full px-2 bg-blue-600 rounded-lg h-8 text-white font-bold ml-auto">
             Logout
           </button>
         </div>
