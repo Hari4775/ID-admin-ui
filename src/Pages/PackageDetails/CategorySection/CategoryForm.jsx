@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { createCategory } from '../../../api/Category/CategoryApi';
 import { useParams } from 'react-router-dom';
 
-const CategoryForm = ({ onClose, refreshCategories }) => {
+const CategoryForm = ({ refreshCategories }) => {
   const { package_id } = useParams();
   const [formData, setFormData] = useState({
     package_id: "",
@@ -40,7 +40,7 @@ const CategoryForm = ({ onClose, refreshCategories }) => {
         const discountRate = parseFloat(updatedData.categoryOffer) || 0;
 
         if (discountRate >= 0 && discountRate <= 100) {
-          updatedData.categoryDiscountedPrice = regularPrice - (regularPrice * discountRate) / 100;
+          updatedData.categoryDiscountedPrice = (regularPrice - (regularPrice * discountRate) / 100).toFixed(2);
         }
       }
 
@@ -48,6 +48,23 @@ const CategoryForm = ({ onClose, refreshCategories }) => {
     });
   };
 
+  const handleCancel = () => {
+    setFormData({
+      package_id: package_id,  // Keep package_id after reset
+      categoryName: "",
+      categoryDescription: "",
+      categoryFeatures: "",
+      categoryRegularPrice: "",
+      categoryDiscountedPrice: "",
+      categoryOffer: "",
+      categoryImage: "",
+      categoryImageCloudinaryId: "",
+    });
+    setPreviewImage("");
+    setSelectedFile(null);
+    setMessage("");
+  };
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -120,8 +137,8 @@ const CategoryForm = ({ onClose, refreshCategories }) => {
   };
 
   return (
-    <div>
-      <h2 className="text-center text-lg font-bold">Create Category</h2>
+    <div className='overflow-hidden rounded-lg border-2 shadow-md'>
+      
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="relative mx-3 my-3 flex md:h-40 h-32 overflow-hidden rounded-xl bg-gray-200">
           {previewImage ? (
@@ -149,11 +166,11 @@ const CategoryForm = ({ onClose, refreshCategories }) => {
             value={formData.categoryName}
             onChange={handleChange}
             required
-            className="w-full text-lg border-b-2 border-gray-300 text-center"
+            className="w-full text-lg border-b-2 border-gray-300 text-left"
           />
         </div>
 
-        <div className="flex w-11/12 mx-auto">
+        <div className="flex w-10/12 mx-auto">
           <div className="w-4/12">
             <input
               type="number"
@@ -188,30 +205,30 @@ const CategoryForm = ({ onClose, refreshCategories }) => {
         </div>
 
         <div className="w-10/12 mx-auto">
-          <input
+          <textarea
             type="text"
             placeholder="Features"
             name="categoryFeatures"
             value={formData.categoryFeatures}
             onChange={handleChange}
             required
-            className="w-full text-lg border-b-2 border-gray-300 text-center"
+            className="w-full text-sm border-b-2 border-gray-300 text-left"
           />
         </div>
 
-        <div className="w-11/12 mx-auto">
-          <input
+        <div className="w-10/12 mx-auto">
+          <textarea
             type="text"
             placeholder="Description"
             name="categoryDescription"
             value={formData.categoryDescription}
             onChange={handleChange}
             required
-            className="w-full text-lg border-b-2 border-gray-300 text-center"
+            className="w-full text-sm border-b-2 border-gray-300 text-left"
           />
         </div>
 
-        <div className="flex space-x-2 w-11/12 mx-auto pb-5">
+        <div className="flex space-x-2 w-10/12 mx-auto pb-5">
           <button
             type="submit"
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-8 rounded-lg"
@@ -221,7 +238,7 @@ const CategoryForm = ({ onClose, refreshCategories }) => {
           </button>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleCancel}
             className="bg-gray-400 hover:bg-gray-500 text-white px-4 h-8 rounded-lg"
           >
             Cancel

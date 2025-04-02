@@ -5,11 +5,11 @@ const API_URL = process.env.REACT_APP_ADMIN_API_URL;
 console.log('API_URL:', API_URL); // This should log "http://localhost:5000/api"
 
 // Function to request OTP for manual registration/login
-export const requestOtp = async (name,email,) => {
+export const requestOtp = async (email,) => {
   try {
-    console.log('Requesting OTP:', {name, email });
+    console.log('Requesting OTP:', {email });
     // API call to request OTP
-    const response = await axios.post(`${API_URL}/auth/request_otp`, { name, email });
+    const response = await axios.post(`${API_URL}/auth/request_otp`, {email });
     console.log('OTP request successful:', response.data);
     return response.data;
   } catch (error) {
@@ -18,10 +18,10 @@ export const requestOtp = async (name,email,) => {
   }
 };
 
-export const verifyOtp = async (email, otp, name) => {
+export const verifyOtp = async (email, otp) => {
     try {
-      console.log('Verifying OTP:', { email, otp, name });
-      const response = await axios.post(`${API_URL}/auth/verify_otp`, { email, otp,name });
+      console.log('Verifying OTP:', { email, otp});
+      const response = await axios.post(`${API_URL}/auth/verify_otp`, { email, otp});
       console.log('OTP verification response:', response.data);
       return response.data;
     } catch (error) {

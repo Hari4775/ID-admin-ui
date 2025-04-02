@@ -10,20 +10,10 @@ const Navbar = () => {
   
   const logoutHandler = async () => {     
     try {
-        // Call the logout API
-        const response = await logout();
-
-        if (response.success) {
-            // Clear the token cookie
-            document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-            console.log('Logout message:', response.message);
-
-            // Navigate to the admin login page
-            navigate('/login');
-        } else {
-            // Handle unsuccessful logout
-            alert(`Logout failed: ${response.message}`);
-        }
+      localStorage.removeItem("token");
+      window.dispatchEvent(new Event("storage")); // Ensure Navbar updates
+      navigate("/login");
+        
     } catch (error) {
         // Handle any unexpected errors
         console.error('An error occurred during the logout process:', error);

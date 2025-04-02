@@ -105,7 +105,7 @@ const PackageCard = ({ pkg, onDelete, onPackageUpdated, refresh }) => {
   };
 
   return (
-    <div className="cursor-pointer transform hover:scale-105 transition-transform duration-300 group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border-2 package-container shadow-md">
+    <div className="cursor-pointer transform hover:scale-105 transition-transform duration-300 group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border-2 shadow-md">
       {!isEditing ? (
         <>
           <div className="relative mx-3 mt-3 flex md:h-40 h-32 overflow-hidden rounded-xl">

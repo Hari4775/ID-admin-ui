@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { createPackage } from "../../../api/package/packageAPI";
 
-const PackageForm = ({ onClose, refreshPackages }) => {
+const PackageForm = ({refreshPackages }) => {
   const [formData, setFormData] = useState({
     package_name: "",
     description: "",
@@ -31,13 +31,29 @@ const PackageForm = ({ onClose, refreshPackages }) => {
         const discountRate = parseFloat(updatedData.discount_rate) || 0;
 
         if (discountRate >= 0 && discountRate <= 100) {
-          updatedData.discounted_price = regularPrice - (regularPrice * discountRate) / 100;
+          updatedData.discounted_price = (regularPrice - (regularPrice * discountRate) / 100).toFixed(2);
         }
       }
 
       return updatedData;
     });
   };
+
+  const handleCancel = () => {
+    setFormData({
+      package_name: "",
+      description: "",
+      regular_price: "",
+      discounted_price: "",
+      discount_rate: "",
+      coverImage: "",
+      coverImageCloudinaryId: "",
+    });
+    setPreviewImage("");
+    setSelectedFile(null);
+    setMessage("");
+  };
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -109,7 +125,7 @@ const PackageForm = ({ onClose, refreshPackages }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4  overflow-hidden rounded-lg border-2 shadow-md">
       <div className="relative mx-3 my-3 flex md:h-40 h-32 overflow-hidden rounded-xl bg-gray-200">
         {previewImage ? (
           <img src={previewImage} alt="Cover Preview" className="w-full h-full object-cover" />
@@ -184,7 +200,7 @@ const PackageForm = ({ onClose, refreshPackages }) => {
         </button>
         <button
           type="button"
-          onClick={onClose}
+          onClick={handleCancel}
           className="bg-gray-400 hover:bg-gray-500 text-white px-4 h-8 rounded-lg"
         >
           Cancel

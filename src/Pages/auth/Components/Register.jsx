@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OtpInput from 'react-otp-input';
 import { register, requestOtp, verifyOtp } from '../../../api/Auth/Auth';
+import { bg, logo } from '../../../Assets/images/images';
 
 const Register = () => {
   // const { login } = useAuth();
   const [step, setStep] = useState(1);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState(''); // Can be email or mobile number
-  const [otp, setOtp] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword,setConfirmPassword] = useState('');
+  const [otp, setOtp] = useState(null);
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
   const [isSending, setIsSending] = useState(false); // State for disabling button
@@ -29,14 +27,12 @@ const Register = () => {
   }, [timer, canResend]);
   
 
-  const loginHAndler =()=>{
-    navigate("/login")
-  }
+  
   const handleRequestOtp = async () => {
     setIsSending(true); // Disable button
     try {
-      console.log(name,email)
-      await requestOtp(name, email); // Send OTP with selected contact type
+      console.log(email)
+      await requestOtp( email); // Send OTP with selected contact type
       alert('OTP sent successfully.');
       setStep(2);
       setTimer(30);
@@ -55,7 +51,7 @@ const Register = () => {
       return;
     }
     try {
-      await requestOtp(name, email);
+      await requestOtp(email);
       alert('OTP resent successfully.');
       setTimer(30); // Reset countdown after resending
       setCanResend(false); // Disable resend button again
@@ -66,141 +62,97 @@ const Register = () => {
   };
 
   const handleVerifyOtp = async () => {
+    const numericOtp = Number(otp); // Convert OTP to a number
+  
+    if (isNaN(numericOtp) || numericOtp.toString().length !== 6) {
+      alert('Please enter a valid 6-digit OTP.');
+      return;
+    }
+  
     try {
-      const response = await verifyOtp(email, otp, name);
-      if (response.message === 'OTP verified successfully.') {
-        // const { token } = response;
-        // // login({ fullName, contact}, token);
-        // alert('OTP verified successfully!');
-        setStep(3)
+      const response = await verifyOtp(email, numericOtp);
+      if (response?.token) {
+        localStorage.setItem("token", response.token);
+        window.dispatchEvent(new Event("storage"));
+        // document.cookie = `token=${response.token}; path=/; secure; HttpOnly`;
+        alert("Login successful!");
+        navigate("/"); // Redirect after successful login
       } else {
-        alert('Invalid OTP. Please try again.');
+        alert("Invalid OTP. Please try again.");
       }
     } catch (error) {
       alert('Invalid OTP. Please try again.');
     }
   };
-
-  const handlePasswordSubmit =async () => {
-    
-      if (password !== confirmPassword) {
-        alert('Passwords do not match.');
-        return;
-      }
-    try{
-      await register(email,name,password);
-      navigate('/admin/login_register');
-      // API call to set the password could go here
-      alert("admin registered successfully. please Login and Continue");
-    }catch(error){
-      alert ('Error for changing passeword')
-    }
   
-  };
+
+
 
   return(
-   
-    <div className="flex flex-col items-center  justify-center  w-full h-screen ">
+    <div
+    className="flex flex-col items-center justify-center w-full h-screen bg-slate-200 bg-cover bg-center"
+    style={{ backgroundImage: `url(${bg})` }}
+  >
+      <img className='lg:w-1/12 w-2/12 ' src={logo}/>
 
-    <div className='lg:w-1/3 md:w-8/12 w-11/12 mx-auto inner-container border-2 shadow-lg shadow-slate-500'>
-          <div className="mid-container mb-10 text-center">
+      <div 
+        style={{ backdropFilter: 'blur(30px)' }} 
+        className='lg:w-1/3 md:w-8/12 w-11/12 mx-auto inner-container rounded-lg border-2 shadow-lg  bg-opacity-90 p-5'
+      >  
+          <div className="mid-container my-5 text-center ">
          
-            
-             <div className='authform-section w-8/12 mx-auto mb-5'>
+             <div className='authform-section w-full lg:w-11/12 mx-auto mb-5'>
 
-
-   
-   
-   
    <div>
-
-
-  
   {step === 1 ? (
     <div className="w-full p-3">
-      <div className="my-5">
-        <input className="w-full rounded-lg h-10 border border-slate-400 px-2"
-          placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)}
-        />
-      </div>
       <div className="mb-5">
-        <input className="w-full rounded-lg h-10 border border-slate-400 px-2"
+        <input className="w-full rounded-lg h-10 border-blue-700 border- px-2 text-lg font-bold"
           placeholder="E-MAIL" value={email} onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <button className="w-full bg-blue-600 rounded-lg h-10 text-white font-bold"
+      <button className="w-full bg-black rounded-lg h-10 text-white font-bold border-blue-700 border-2"
         onClick={handleRequestOtp} disabled={isSending} 
       >
         {isSending ? 'Sending...' : 'Send OTP'}
       </button>
     </div>
-  ) : step ===2 ?(
+  ) : (
+    step ===2 && (
     <div className="w-full p-5">
       <div className="my-5">
         <OtpInput value={otp} onChange={setOtp} numInputs={6}
           renderInput={(props) => (
-            <input {...props} style={{}} className="border border-slate-400 rounded-lg text-center ml-1 w-full h-10"
+            <input {...props} style={{}} className="border-blue-700 border-2 text-lg rounded-lg text-center font-bold ml-1 w-full h-10"
             />
           )}
         />
+       
+
       </div>
-      <button className="w-full bg-blue-600 rounded-lg h-10 text-white font-bold" onClick={handleVerifyOtp}
+      <button className="w-full bg-black rounded-lg h-10 text-white font-bold border-blue-700 border-2 " onClick={handleVerifyOtp}
       > Verify OTP
       </button>
       <div className="mt-3 text-center">
         {canResend ? (
           resendCount < 3 ? (
-            <button className="text-blue-500 underline" onClick={handleResendOtp}>
+            <button className="underline" onClick={handleResendOtp}>
               Resend OTP
             </button>
           ) : (
             <p className="text-red-500">Maximum OTP request attempts expired</p>
           )
         ) : (
-          <p>Resend OTP in {timer} seconds</p>
+          <p className='text-white mt-5'>Resend OTP in {timer} seconds</p>
         )}
       </div>
     </div>
-  ):(
-    <div className="w-full p-5">
-      <div className="my-5">
-        <input
-          type="password"
-          className="w-full rounded-lg h-10 border border-slate-400 px-2"
-          placeholder="New Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div className="my-5">
-        <input
-          type="password"
-          className="w-full rounded-lg h-10 border border-slate-400 px-2"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </div>
-      <button
-        className="w-full bg-blue-600 rounded-lg h-10 text-white font-bold"
-        onClick={handlePasswordSubmit}
-      >
-        Set Password
-      </button>
-    </div>
+    )
   )}
 
 
     </div>
-    <p className="mt-5">
-                Already have an account?{" "}
-                <button
-                  className="text-blue-500 underline"
-                  onClick={loginHAndler}
-                >
-                  Login
-                </button>
-              </p>
+
 
 
     </div>
