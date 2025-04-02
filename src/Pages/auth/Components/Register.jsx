@@ -71,7 +71,8 @@ const Register = () => {
   
     try {
       const response = await verifyOtp(email, numericOtp);
-      if (response?.token) {
+      if (response) {
+        console.log(response.token)
         localStorage.setItem("token", response.token);
         window.dispatchEvent(new Event("storage"));
         // document.cookie = `token=${response.token}; path=/; secure; HttpOnly`;
