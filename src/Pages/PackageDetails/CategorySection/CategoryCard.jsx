@@ -161,7 +161,7 @@ const CategoryCard = ({ category, refresh, onViewPlan }) => {
             <h1 className="md:text-xl text-sm tracking-tight font-bold uppercase text-black">
               {category?.categoryName}
             </h1>
-            <p className="text-sm text-gray-700">{category?.categoryDescription}</p>
+            <p className="text-sm text-gray-700 h-10 overflow-y-scroll">{category?.categoryDescription}</p>
             <div className="mt-2 flex items-center justify-between">
               <p className="text-sm text-blue-500">{category?.categoryOffer}% OFF</p>
               <div>

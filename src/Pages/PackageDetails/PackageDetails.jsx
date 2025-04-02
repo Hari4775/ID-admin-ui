@@ -66,6 +66,8 @@ const AdminPackageDetails = () => {
   return (
   <div className="w-11/12 mx-auto">
     <div className=" w-1/12 my-8">
+=======
+    <div className=" mr-2 ">
          <Link to="/">
            <img className="w-8 h-4 mr-4" src="https://e7.pngegg.com/pngimages/622/678/png-clipart-computer-icons-arrow-symbol-back-button-blue-angle.png" alt=""/>
         </Link>
@@ -74,7 +76,7 @@ const AdminPackageDetails = () => {
       <h1 className="font-bold text-3xl underline">PACKAGE CATEGORIES</h1>
       
       <div>
-        <div className="w-full py-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="w-full py-3 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <CategoryForm refreshCategories={fetchCategories} />
           {categories?.length > 0 ? (
             categories.map((cat) => (
@@ -129,6 +131,8 @@ const AdminPackageDetails = () => {
     </div>
 
   </div>
+=======
+    </div>
   );
 };
 
