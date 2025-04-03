@@ -22,7 +22,7 @@ export const verifyOtp = async (email, otp) => {
     try {
       console.log('Verifying OTP:', { email, otp});
       const response = await axios.post(`${API_URL}/auth/verify_otp`, { email, otp});
-      console.log('OTP verification response:', response.data);
+      console.log('OTP verification response:', response);
       return response.data;
     } catch (error) {
       console.error('Error in verifyOtp:', error.response?.data || error.message);

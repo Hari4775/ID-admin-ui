@@ -8,7 +8,7 @@ const Register = () => {
   // const { login } = useAuth();
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState(''); // Can be email or mobile number
-  const [otp, setOtp] = useState(null);
+  const [otp, setOtp] = useState('');
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
   const [isSending, setIsSending] = useState(false); // State for disabling button
@@ -137,7 +137,7 @@ const Register = () => {
       <div className="mt-3 text-center">
         {canResend ? (
           resendCount < 3 ? (
-            <button className="underline" onClick={handleResendOtp}>
+            <button className="underline text-white" onClick={handleResendOtp}>
               Resend OTP
             </button>
           ) : (
