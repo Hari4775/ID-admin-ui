@@ -65,7 +65,7 @@ const AdminPackageDetails = () => {
 
   return (
   <div className="w-11/12 mx-auto">
-    <div className=" w-1/12 my-8">
+
     <div className=" mr-2 ">
          <Link to="/">
            <img className="w-8 h-4 mr-4" src="https://e7.pngegg.com/pngimages/622/678/png-clipart-computer-icons-arrow-symbol-back-button-blue-angle.png" alt=""/>
@@ -130,7 +130,7 @@ const AdminPackageDetails = () => {
     </div>
 
   </div>
-    </div>
+   
   );
 };
 
