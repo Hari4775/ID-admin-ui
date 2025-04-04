@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PackageForm from "./Card.jsx/PackageForm"
 import PackageCard from "./Card.jsx/PackageCard";
 import { deletePackage, getPackages } from "../../api/package/packageAPI";
 
 const AdminDashboard = () => {
   const [packages, setPackages] = useState([]);
-
+  const [loading, setLoading] = useState(true); 
 
   const fetchPackages = async () => {
+    setLoading(true);
     try {
       const response = await getPackages();
       setPackages(response?.data?.packages);
@@ -31,6 +32,7 @@ const AdminDashboard = () => {
     fetchPackages();
   }, []);
 
+  const memoizedPackages = useMemo(() => packages, [packages]);
   return (
     <div className="dashboard w-full h-screen ">
       <div className="w-11/12 mx-auto flex flex-col ">
