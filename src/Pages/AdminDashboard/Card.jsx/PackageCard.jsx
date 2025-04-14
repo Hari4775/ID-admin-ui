@@ -122,7 +122,7 @@ const PackageCard = ({ pkg, onDelete, onPackageUpdated, refresh }) => {
               </p>
             </div>
             <div className="flex space-x-2">
-              <button className="bg-blue-600 text-white px-3 py-1 rounded-md" onClick={() => navigate(`package_details/${pkg.package_id}`)}>View</button>
+              <button className="bg-blue-600 text-white px-3 py-1 rounded-md" onClick={() => navigate(`/package_details/${pkg.package_id}`)}>View</button>
               <button className="bg-yellow-500 text-white px-3 py-1 rounded-md" onClick={handleEditToggle}>Edit</button>
               <button className="bg-red-600 text-white px-3 py-1 rounded-md" onClick={() => onDelete(pkg.package_id)}>Delete</button>
             </div>
